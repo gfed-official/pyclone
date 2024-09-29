@@ -49,7 +49,7 @@ def delete(template: str = "", userlist: str = ""):
 
     # Deletion by userlist
     if len(template) > 0 and len(userlist) == 0:
-        delete_response = session.post(f"{URL}/admin/pod/delete/bulk", cookies=session.cookies.get_dict(), verify=False, json={"filters": [template]})
+        delete_response = session.delete(f"{URL}/admin/pod/delete/bulk", cookies=session.cookies.get_dict(), verify=False, json={"filters": [template]})
         print(delete_response.text)
     
     # Deletion by template
@@ -58,7 +58,7 @@ def delete(template: str = "", userlist: str = ""):
         with open(userlist, 'r') as f:
             for line in f:
                 users.append(line.strip())
-        delete_response = session.post(f"{URL}/admin/pod/delete/bulk", cookies=session.cookies.get_dict(), verify=False, json={"filters": users})
+        delete_response = session.delete(f"{URL}/admin/pod/delete/bulk", cookies=session.cookies.get_dict(), verify=False, json={"filters": users})
         print(delete_response.text)
     # Deletion by userlist and template
     else:
@@ -67,7 +67,7 @@ def delete(template: str = "", userlist: str = ""):
             for line in f:
                 pods.append(template + "_" + line.strip())
         print({"filters": pods})
-        delete_response = session.post(f"{URL}/admin/pod/delete/bulk", cookies=session.cookies.get_dict(), verify=False, json={"filters": pods})
+        delete_response = session.delete(f"{URL}/admin/pod/delete/bulk", cookies=session.cookies.get_dict(), verify=False, json={"filters": pods})
     delete_response.raise_for_status()
 
 # View a resource
