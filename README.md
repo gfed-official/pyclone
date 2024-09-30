@@ -1,7 +1,8 @@
 # pyclone
 Python script to interact with GoClone
 ```
-usage: pyclone.py [-h] -u USERNAME -p PASSWORD -a {clone,bulk_clone,delete,view,refresh} [-t TEMPLATE] [-l USERLIST] [-r {pods,templates}]
+usage: pyclone.py [-h] -u USERNAME -p PASSWORD -a {bulk_clone,delete,view,refresh,revert,power} [-t TEMPLATE] [-l USERLIST] [-snapshot SNAPSHOT]
+                  [-state {on,off}] [-r {pods,templates}]
 
 Script for cloning pods
 
@@ -11,12 +12,32 @@ optional arguments:
                         Username
   -p PASSWORD, --password PASSWORD
                         Password
-  -a {clone,bulk_clone,delete,view,refresh}, --action {clone,bulk_clone,delete,view,refresh}
+  -a {bulk_clone,delete,view,refresh,revert,power}, --action {bulk_clone,delete,view,refresh,revert,power}
                         Action to perform
+
+pod_operations:
+  Arguments for bulk_clone, delete, revert, and power
+
   -t TEMPLATE, --template TEMPLATE
-                        Template name
+                        Template name for bulk cloning
   -l USERLIST, --userlist USERLIST
-                        Path to userlist file
+                        Path to userlist file for bulk cloning
+
+power:
+  Additional arguments for revert
+
+  -snapshot SNAPSHOT, --snapshot SNAPSHOT
+                        Snapshot name to revert to
+
+power:
+  Additional arguments for power operations
+
+  -state {on,off}, --state {on,off}
+                        Power status to set
+
+view:
+  Arguments for viewing resources
+
   -r {pods,templates}, --resource {pods,templates}
                         Resource to view
 ```
